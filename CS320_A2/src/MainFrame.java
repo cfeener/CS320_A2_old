@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class MainFrame extends JFrame {
@@ -30,6 +33,8 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		setTitle("Gomoku");
+		setPreferredSize(new Dimension(500, 400));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -37,8 +42,18 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
+		//Set inner panel.
+		MyPanel panel = new MyPanel();
+		panel.addMouseListener(new MouseAdapter() {
+			int row, column;
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
 		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setPreferredSize(new Dimension (300, 300));
+	
+		repaint();
 	}
 
 }
